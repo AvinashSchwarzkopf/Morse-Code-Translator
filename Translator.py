@@ -1,28 +1,38 @@
 print('A Morse Code translator!')
-print('Use "Morse: " before Morse code to translate Morse code into English')
-print('Use "English: " before English to translate into Morse code')
+print('>>> Morse: .... . .-.. .-.. ---     .-- --- .-. .-.. -..')
+print('hello world')
+print('>>> English: hello world')
+print('.... . .-.. .-.. ---     .-- --- .-. .-.. -..')
 print('Python interpreter works as usual otherwise')
+print("Use 'quit()' to quit")
 
-Morse_English = {'.-':'a', '-...':'b', '-.-.':'c', '-..':'d', '.':'e', '..-..':'f', '--.':'g', '....':'h', '..':'i', '.---':'j', '-.-':'k', '.-..':'l', '--':'m', '-.':'n', '---':'o', '.--.':'p', '--.-':'q', '.-.':'r', '...':'s', '-':'t', '..-':'u', '...-':'v', '.--':'w', '-..-':'x', '-.--':'y', '--..':'z', '   ':' ', '--..--':',', '.-.-.-':'.', '..--..':'?', '---...':':', '.-..-.':'"'}
+Morse_English = {'.-':'a', '-...':'b', '-.-.':'c', '-..':'d', '.':'e', '..-..':'f', '--.':'g', '....':'h', '..':'i', '.---':'j', '-.-':'k', '.-..':'l', '--':'m', '-.':'n', '---':'o', '.--.':'p', '--.-':'q', '.-.':'r', '...':'s', '-':'t', '..-':'u', '...-':'v', '.--':'w', '-..-':'x', '-.--':'y', '--..':'z', '   ':' ', '':'', '--..--':',', '.-.-.-':'.', '..--..':'?', '---...':':', '.-..-.':'"', '-.-.--':'!'}
 
 English_Morse = dict(zip(list(Morse_English.values()), list(Morse_English.keys())))
 
 def Morse(x):
-    x += ' '
     for a in x:
         if a != '-' and a != '.' and a != ' ':
             return "Input must be Morse Code"
-    letters = ''
+    x += ' '
+    sentence = ''
     letter = ''
+    i=0
     for a in x:
-        if a != ' ':
-            letter += a 
+        if (a != ' '):
+            i = 0
+            letter += a
         else:
-            if letter not in Morse_English:
-                return '"' + letter + '"' + " not translatable"
-            letters += Morse_English[letter]
-            letter = ''
-    return letters
+            i += 1
+            if i == 3:
+                sentence += ' '
+                i=0
+            else:
+                if letter not in Morse_English:
+                    return '"' + letter + '"' + " is not translatable"
+                sentence += Morse_English[letter]
+                letter = ''
+    return sentence
 
 def English(x):
     x += ' '
@@ -41,5 +51,10 @@ while True:
         print(Morse(x[7:]))
     elif x[0:8] == 'English:':
         print(English(x[9:]))
+    elif x == 'quit()':
+        exit()
     else:
-        print(eval(x))
+        try:
+            print(eval(x))
+        except Exception as e:
+            print('Error: ' + str(e))
