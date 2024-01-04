@@ -3,7 +3,6 @@ print('>>> Morse: .... . .-.. .-.. ---     .-- --- .-. .-.. -..')
 print('hello world')
 print('>>> English: hello world')
 print('.... . .-.. .-.. ---     .-- --- .-. .-.. -..')
-print('Python interpreter works as usual otherwise')
 print("Use 'quit()' to quit")
 
 Morse_English = {'.-':'a', '-...':'b', '-.-.':'c', '-..':'d', '.':'e', '..-..':'f', '--.':'g', '....':'h', '..':'i', '.---':'j', '-.-':'k', '.-..':'l', '--':'m', '-.':'n', '---':'o', '.--.':'p', '--.-':'q', '.-.':'r', '...':'s', '-':'t', '..-':'u', '...-':'v', '.--':'w', '-..-':'x', '-.--':'y', '--..':'z', '   ':' ', '':'', '--..--':',', '.-.-.-':'.', '..--..':'?', '---...':':', '.-..-.':'"', '-.-.--':'!'}
@@ -55,6 +54,6 @@ while True:
         exit()
     else:
         try:
-            print(eval(x))
+            eval(x)
         except Exception as e:
             print('Error: ' + str(e))
